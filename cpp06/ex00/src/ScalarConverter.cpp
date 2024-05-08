@@ -37,14 +37,32 @@ void DisplayInt(long int i){
         std::cout << "impossible" << std::endl;
 }
 
+bool    IsNum(const std::string &literal)
+{
+    int    i = 0;
+    if (literal.length() == 1 && literal[0] == 'f')
+        return (false);
+    if (literal[i] == '-' || literal[i] == '+')
+        i++;
+    while (literal[i] && std::isdigit(literal[i]))
+        i++;
+    if (literal[i] == '.' && i)
+        i++;
+    while (literal[i] && std::isdigit(literal[i]))
+        i++;
+    if (literal[i] == 'f')
+        i++;
+    return ((size_t) i == literal.length() && i);
+}
+
 int CheckType(std::string str){
     if(str.size() == 3 && str[0] == '\'' && str[2] == '\'')
         return (CHAR_TYPE);
-    else if(str.find_first_not_of("-0123456789") == std::string::npos)
+    else if(str.find_first_not_of("-0123456789") == std::string::npos && IsNum(str))
         return (INT_TYPE);
-    else if(str.find_first_not_of("-.0123456789") == std::string::npos)
+    else if(str.find_first_not_of("-.0123456789") == std::string::npos && IsNum(str))
         return (DOOBLE_TYPE);
-    else if(str.find_first_not_of("-.f0123456789") == std::string::npos)
+    else if(str.find_first_not_of("-.f0123456789") == std::string::npos && IsNum(str))
         return (FLOAT_TYPE);
     return (-1);
 }
@@ -63,7 +81,10 @@ void DisplayExeption(std::string str){
         std::cout << "dooble: " << "-inf" << std::endl;
     }
     if(str == "nan"){
-        
+        // a finir.
+    }
+    else{
+        std::cout << "Unsupported argument." << std::endl;
     }
 }
 
@@ -104,8 +125,7 @@ void ScalarConverter::convert(std::string str){
         break;
         default:
             DisplayExeption(str);
-            // std::cout << "Error." << std::endl;
-            break;
+        break;
     }
 
 
