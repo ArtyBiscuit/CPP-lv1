@@ -9,9 +9,7 @@ bool UserInput(int argv){
 }
 
 int main(int argv, char **argc){
-    ScalarConverter sc;
-
     if(UserInput(argv))
-        sc.convert(argc[1]);
+        ScalarConverter::convert(argc[1]);
     return (0);
 }

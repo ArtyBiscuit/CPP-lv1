@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-#include <iomanip> //find_first_not_of
+#include <iomanip>
 
 void DisplayChar(int c){
     std::cout << "char: ";
@@ -32,7 +32,7 @@ void DisplayDouble(long double d){
 void DisplayInt(long int i){
     std::cout << "int: ";
     if(i >= INT_MIN && i <= INT_MAX)
-        std::cout << (int)i << std::endl;
+        std::cout << static_cast<int>(i) << std::endl;
     else
         std::cout << "impossible" << std::endl;
 }
@@ -67,68 +67,86 @@ int CheckType(std::string str){
     return (-1);
 }
 
-void DisplayExeption(std::string str){
-    if(str == "+inff" || str == "+inf"){
+// void DisplayExeption(std::string str){
+//     if(str == "+inff" || str == "+inf"){
+//         std::cout << "char: impossible" << std::endl;
+//         std::cout << "int: impossible" << std::endl;
+//         std::cout << "float: " << "inff" << std::endl;
+//         std::cout << "dooble: " << "inf" << std::endl;
+//     }
+//     if(str == "-inff" || str == "-inf"){
+//         std::cout << "char: impossible" << std::endl;
+//         std::cout << "int: impossible" << std::endl;
+//         std::cout << "float: " << "-inff" << std::endl;
+//         std::cout << "dooble: " << "-inf" << std::endl;
+//     }
+//     if(str == "nan"){
+//         // a finir.
+//     }
+//     else{
+//         std::cout << "Unsupported argument." << std::endl;
+//     }
+// }
+
+void DisplayExeption(std::string str)
+{
+	if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf")
+	{
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << "inff" << std::endl;
-        std::cout << "dooble: " << "inf" << std::endl;
-    }
-    if(str == "-inff" || str == "-inf"){
+        std::cout << "float: " << str << "f" << std::endl;
+        std::cout << "dooble: " << str << std::endl;
+	}
+	else if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff")
+	{
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << "-inff" << std::endl;
-        std::cout << "dooble: " << "-inf" << std::endl;
-    }
-    if(str == "nan"){
-        // a finir.
-    }
+        std::cout << "float: " << str << std::endl;
+		// c'est magic
+		str[3] = 0;
+        std::cout << "dooble: " << str << std::endl;
+	}
     else{
         std::cout << "Unsupported argument." << std::endl;
     }
-}
-
-char getChar(std::string str){
-    return (str[1]);
 }
 
 void ScalarConverter::convert(std::string str){
     switch (CheckType(str))
     {
         case CHAR_TYPE:
-            // std::cout << "Char Type" << std::endl << std::endl;
-            DisplayChar((int)getChar(str));
-            DisplayInt((long int)getChar(str));
-            DisplayFloat((float)getChar(str));
-            DisplayDouble((double)getChar(str));
+            DisplayChar(static_cast<int>(str[1]));
+            DisplayInt(static_cast<long int>(str[1]));
+            DisplayFloat(static_cast<float>(str[1]));
+            DisplayDouble(static_cast<double>(str[1]));
         break;
         case FLOAT_TYPE:
-            // std::cout << "Float Type" << std::endl << std::endl;
-            DisplayChar((int)atof(str.c_str()));
-            DisplayInt((long int)atof(str.c_str()));
-            DisplayFloat((float)atof(str.c_str()));
-            DisplayDouble(atof(str.c_str()));
+            DisplayChar(static_cast<int>(atof(str.c_str())));
+            DisplayInt(static_cast<long int>(atof(str.c_str())));
+            DisplayFloat(static_cast<float>(atof(str.c_str())));
+            DisplayDouble(static_cast<double>(atof(str.c_str())));
         break;
         case DOOBLE_TYPE:
-            // std::cout << "Dooble Type" << std::endl << std::endl;
-            DisplayChar((int)atof(str.c_str()));
-            DisplayInt((long int)atof(str.c_str()));
-            DisplayFloat((float)atof(str.c_str()));
-            DisplayDouble(atof(str.c_str()));
+            DisplayChar(static_cast<int>(atof(str.c_str())));
+            DisplayInt(static_cast<long int>(atof(str.c_str())));
+            DisplayFloat(static_cast<float>(atof(str.c_str())));
+            DisplayDouble(static_cast<double>(atof(str.c_str())));
         break;
         case INT_TYPE:
-            // std::cout << "Int Type" << std::endl << std::endl;
-            DisplayChar((int)atof(str.c_str()));
-            DisplayInt((long int)atof(str.c_str()));
-            DisplayFloat((float)atof(str.c_str()));
-            DisplayDouble(atof(str.c_str()));
+            DisplayChar(static_cast<int>(atof(str.c_str())));
+            DisplayInt(static_cast<long int>(atof(str.c_str())));
+            DisplayFloat(static_cast<float>(atof(str.c_str())));
+            DisplayDouble(static_cast<double>(atof(str.c_str())));
         break;
         default:
             DisplayExeption(str);
         break;
     }
+}
 
-
+ScalarConverter    &ScalarConverter::operator=(const ScalarConverter &src){
+    *this = src;
+    return (*this);
 }
 
 ScalarConverter::ScalarConverter(){

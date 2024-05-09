@@ -29,10 +29,21 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
     fichier << "             |||\n";
     fichier << "             |||\n";
     fichier << "             |||\n";
+    fichier << "       , -=-~  .-^- _\n\n";
+    fichier << "          &&& &&  & &&\n";
+    fichier << "      && &\\/&\\|& ()|/ @, &&\n";
+    fichier << "      &\\/(/&/&||/& /_/)_&/_&\n";
+    fichier << "   &() &\\/&|()|/&\\/ '%\" & ()\n";
+    fichier << "  &_\\_&&_\\ |& |&&/&__%_/_& &&\n";
+    fichier << "&&   && & &| &| /& & % ()& /&&\n";
+    fichier << " ()&_---()&\\&\\|&&-&&--%---()~\n";
+    fichier << "     &&     \\|||\n";
+    fichier << "             |||\n";
+    fichier << "             |||\n";
+    fichier << "             |||\n";
     fichier << "       , -=-~  .-^- _\n";
     fichier.close();
 }
-
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreation", 145, 137), _target(target){
 };
 
