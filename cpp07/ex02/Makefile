@@ -6,8 +6,7 @@ _CYAN=\033[36m
 
 NAME = Identify
 
-SRC =	main.cpp \
-		Base.cpp
+SRC =	main.cpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 

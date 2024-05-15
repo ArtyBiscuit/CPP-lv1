@@ -1,77 +1,106 @@
-#include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 #include <string>
 #include <iostream>
 #include <cstdlib>
 
-Base* generate(void){
-	srand((unsigned) time(NULL));
-	int random = rand() % 3;
+#include "iter.hpp"
 
-    switch (random){
-        case 0:
-            std::cout << "Generating a type class A." << std::endl;
-            return(new A);
-            break;
-        case 1:
-            std::cout << "Generating a type class B." << std::endl;
-            return(new B);
-            break;
-        case 2:
-            std::cout << "Generating a type class C." << std::endl;
-            return(new C);
-            break;
-        default:
-            std::cout << "No class generated." << std::endl;
-            break;
+
+void noConstTest(void){
+    int array_size = 3;
+
+
+    int int_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        int_array[i] = 0;
     }
-    return (0);
+    ::iter(int_array, array_size, increase);
+    ::iter(int_array, array_size, increase);
+    ::iter(int_array, array_size, increase);
+    std::cout << std::endl;
+
+
+    char char_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        char_array[i] = 'a';
+    }
+    ::iter(char_array, array_size, increase);
+    ::iter(char_array, array_size, increase);
+    ::iter(char_array, array_size, increase);
+    std::cout << std::endl;
+
+
+    float float_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        float_array[i] = 0.1;
+    }
+    ::iter(float_array, array_size, increase);
+    ::iter(float_array, array_size, increase);
+    ::iter(float_array, array_size, increase);
+    std::cout << std::endl;
+
+
+    TestClass class_Array[array_size];
+    for(int i = 0; i < array_size; i++){
+        class_Array[i].status = false;
+        class_Array[i].id = i;
+    }
+    ::iter(class_Array, array_size, setStatus);
+    ::iter(class_Array, array_size, setStatus);
+    ::iter(class_Array, array_size, setStatus); 
+    std::cout << std::endl;
 }
 
-void identify(Base* p){
-    if(dynamic_cast<A*>(p) != NULL)
-        std::cout << "is a A class" << std::endl;
-    else if(dynamic_cast<B*>(p) != NULL)
-        std::cout << "is a B class" << std::endl;
-    else if(dynamic_cast<C*>(p) != NULL)
-        std::cout << "is a C class" << std::endl;
-    else
-        std::cout << "not identified" << std::endl;
-}
+void constTest(void){
+    int array_size = 3;
 
-void identify(Base& p){
-	try{
-		dynamic_cast<A&>(p);
-        std::cout << "is a A class" << std::endl;
-		return;
-	}
-    catch(const std::exception &e){
+
+    int int_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        int_array[i] = i;
     }
-	try{
-		dynamic_cast<B&>(p);
-        std::cout << "is a B class" << std::endl;
-		return;
-	}
-    catch(const std::exception &e){
+    const int *c_int_array = int_array;
+    ::iter(c_int_array, array_size, checkValue);
+    ::iter(c_int_array, array_size, checkValue);
+    ::iter(c_int_array, array_size, checkValue);
+    std::cout << std::endl;
+
+
+    char char_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        char_array[i] = 'a' + i;
     }
-	try{
-		dynamic_cast<C&>(p);
-        std::cout << "is a c class" << std::endl;
-		return;
-	}
-    catch(const std::exception &e){
+    const char *c_char_array = char_array;
+    ::iter(c_char_array, array_size, checkValue);
+    ::iter(c_char_array, array_size, checkValue);
+    ::iter(c_char_array, array_size, checkValue);
+    std::cout << std::endl;
+
+
+    float float_array[array_size];
+    for(int i = 0; i < array_size; i++){
+        float_array[i] = 0.1 + i;
     }
-	std::cout << "not identified" << std::endl;
+    const float *c_float_array = float_array;
+    ::iter(c_float_array, array_size, checkValue);
+    ::iter(c_float_array, array_size, checkValue);
+    ::iter(c_float_array, array_size, checkValue);
+    std::cout << std::endl;
+
+
+    TestClass class_Array[array_size];
+    for(int i = 0; i < array_size; i++){
+        class_Array[i].status = false;
+        class_Array[i].id = i;
+    }
+    const TestClass *c_class_Array = class_Array;
+    ::iter(c_class_Array, array_size, checkStatus);
+    ::iter(c_class_Array, array_size, checkStatus);
+    ::iter(c_class_Array, array_size, checkStatus); 
+    std::cout << std::endl;
 }
 
 int main(void){
-	Base	*MyClass = generate();
-
-	identify(MyClass);
-	identify(*MyClass);
-
-	delete MyClass;
+    noConstTest();
+    constTest();
 	return 0;
 }
