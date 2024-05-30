@@ -2,7 +2,7 @@
 # define ARRAY_HPP
 
 # include <iostream>
-# include<exception>
+# include <exception>
 
 template<typename T>
 class Array
@@ -12,24 +12,35 @@ class Array
         unsigned int _size;
     public:
 
-        class OutOfRange : public std::exception { 
+        class OutOfRange : public std::exception{ 
 			public: 
-				virtual const char* what() const throw() {
+				virtual const char* what() const throw(){
                     return ("Out of range.\n");
                 }; 
 		};
 
-        Array    &Array::operator=(const Array &src){
+        const Array<T>    operator=(const Array<T> &src) const{
             *this = src;
+            *this->_array = new T[src._size];
+            for (unsigned int i = 0; i < src._size; i++){
+                this->_array[i] = src._array[i]; 
+            }
             return (*this);
         };
 
-        T	&Array<T>::operator[](unsigned int index) const {
-        	if (pos >= this->_size) {
-        		throw OutOfRange();
-        	}
-        	return (this->_array[index]);
-        }
+        T	operator[](unsigned int index) const {
+            if (index >= this->_size) {
+                throw OutOfRange();
+            }
+            return (this->_array[index]);
+        };
+
+        T	&operator[](unsigned int index){
+            if (index >= this->_size) {
+                throw OutOfRange();
+            }
+            return (this->_array[index]);
+        };
 
         Array(/* args */) : _array(NULL), _size(0){};
 
@@ -42,8 +53,11 @@ class Array
             *this = src;
         };
 
-        ~Array();
+        ~Array(){
+            delete this->_array;
+        };
 };
+
 
 
 #endif
