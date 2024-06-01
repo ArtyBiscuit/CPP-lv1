@@ -61,19 +61,25 @@ int main(void){
 		array[0] = 26;
 		array[1] = 51;
 		array[2] = 42;
+        std::cout << "Array 1" << std::endl;
 		std::cout << array[0] << std::endl;
 		std::cout << array[1] << std::endl;
 		std::cout << array[2] << std::endl;
 
 		Array<int> array_tmp;
+        std::cout << "Array-2 copy from Array-1" << std::endl;
 		array_tmp = array;
+        std::cout << "Array 2" << std::endl;
 		std::cout << array_tmp[0] << std::endl;
 		std::cout << array_tmp[1] << std::endl;
 		std::cout << array_tmp[2] << std::endl;
+        std::cout << "Set new valus (186) in array-2 on index (1)" << std::endl;
 		array_tmp[1] = 186;
+        std::cout << "Array 2" << std::endl;
 		std::cout << array_tmp[0] << std::endl;
 		std::cout << array_tmp[1] << std::endl;
 		std::cout << array_tmp[2] << std::endl;
+        std::cout << "Array 1" << std::endl;
 		std::cout << array[0] << std::endl;
 		std::cout << array[1] << std::endl;
 		std::cout << array[2] << std::endl;

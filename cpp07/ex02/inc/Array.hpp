@@ -19,11 +19,15 @@ class Array
                 }; 
 		};
 
-        const Array<T>    operator=(const Array<T> &src) const{
-            *this = src;
-            *this->_array = new T[src._size];
-            for (unsigned int i = 0; i < src._size; i++){
-                this->_array[i] = src._array[i]; 
+        Array<T>    &operator=(const Array<T> &src){
+            if(this != &src){
+                if (this->_size > 0)
+                    delete [] this->_array;
+                this->_array = new T[src._size] ();
+                for (unsigned int i = 0; i < src._size; i++){
+                    this->_array[i] = src._array[i]; 
+                }
+                this->_size = src._size;
             }
             return (*this);
         };
@@ -39,13 +43,13 @@ class Array
             if (index >= this->_size) {
                 throw OutOfRange();
             }
-            return (this->_array[index]);
+            return (this->_array[(int)index]);
         };
 
-        Array(/* args */) : _array(NULL), _size(0){};
+        Array() : _array(NULL), _size(0){};
 
         Array(unsigned int n){
-            this->_array = new T[n];
+            this->_array = new T[n] ();
             this->_size = n;
         };
 
@@ -54,7 +58,7 @@ class Array
         };
 
         ~Array(){
-            delete this->_array;
+            delete [] this->_array;
         };
 };
 
