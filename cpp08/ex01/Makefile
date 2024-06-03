@@ -4,9 +4,9 @@ _GREEN=\033[32m
 _YELLOW=\033[33m
 _CYAN=\033[36m
 
-NAME = Iter
-
-SRC =	main.cpp
+NAME = Span
+SRC =	main.cpp \
+		Span.cpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
