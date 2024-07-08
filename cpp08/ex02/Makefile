@@ -4,7 +4,7 @@ _GREEN=\033[32m
 _YELLOW=\033[33m
 _CYAN=\033[36m
 
-NAME = Array
+NAME = Abomination
 
 SRC =	main.cpp
 

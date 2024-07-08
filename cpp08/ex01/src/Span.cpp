@@ -7,12 +7,38 @@ void Span::addNumber(int Number){
 }
 
 unsigned int Span::longestSpan(){
-     int min = std::min(*this->_VSpan.begin(), *this->_VSpan.end());
-     int max = std::max(*this->_VSpan.begin(), *this->_VSpan.end());
+    if (this->_VSpan.size() <= 1)
+        throw SpanInsuficienteNumbers();
+    
+    int min = *std::min_element(this->_VSpan.begin(), this->_VSpan.end());
+    int max = *std::max_element(this->_VSpan.begin(), this->_VSpan.end());
+     return ((min - max) * -1);
+}
 
-     std::cout << min << std::endl;
-     std::cout << max << std::endl;
-     return (0);
+unsigned int Span::shortestSpan(){
+
+    if (this->_VSpan.size() <= 1)
+        throw SpanInsuficienteNumbers();
+    
+    std::vector<int> SortSpan = this->_VSpan;
+    std::sort(SortSpan.begin(), SortSpan.end());
+     return ((SortSpan[0] - SortSpan[1]) * -1);
+}
+
+
+int generateUniqueInt(){
+    int randInt = rand() % 2147483647;
+    return (randInt);
+}
+
+void Span::randomGenerate(){
+	srand((unsigned) time(0));
+
+    std::vector<int> tmp_span (this->_N);
+    std::generate(tmp_span.begin(), tmp_span.end(), generateUniqueInt);
+
+    this->_VSpan = tmp_span;
+
 }
 
 Span::Span(unsigned int N){
