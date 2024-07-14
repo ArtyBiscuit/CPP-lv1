@@ -5,13 +5,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-#define RESET   "\033[0m"
-#define YELLOW  "\033[33m"
-
-void AFormTest();
-void BureaucratTest();
-void BasicOperation();
-
 int main(void){
 
     Intern Lolo;
@@ -57,9 +50,5 @@ int main(void){
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
-
-    BasicOperation();
-    AFormTest();
-    BureaucratTest();
     return (0);
 }

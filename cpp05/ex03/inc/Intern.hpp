@@ -15,6 +15,7 @@ class Intern{
 
         Intern();
         ~Intern();
+        Intern(const Intern &src);
         Intern &operator=(const Intern &src);
 };
 

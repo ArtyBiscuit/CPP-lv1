@@ -1,9 +1,12 @@
 #include "Form.hpp"
 
-Form    &Form::operator=(const Form &src){
-    *this = src;
-    return (*this);
+Form&	Form::operator=(const Form &src) {
+	if (this != &src) {
+		this->_signed = src._signed;
+	}
+	return (*this);
 }
+
 
 // Print all Form info.
 std::ostream    &operator<<(std::ostream &output, Form const &f){
@@ -20,6 +23,10 @@ Form::Form(std::string name, unsigned int grade_to_sign, unsigned int grade_to_e
         throw GradeTooLowException();
     else if (grade_to_sign < 1 || grade_to_execute < 1)
         throw GradeTooHighException();
+}
+
+Form::Form(const Form &src): _name(src._name), _grade_to_sign(src.getGradeToSign()), _grade_to_execute(src.getGradeToExecute()) {
+	*this = src;
 }
 
 Form::Form() : _name("none"), _grade_to_sign(0), _grade_to_execute(0){

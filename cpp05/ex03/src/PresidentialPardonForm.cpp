@@ -1,7 +1,9 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm    &PresidentialPardonForm::operator=(const PresidentialPardonForm &src){
-    return (*this);
+	if (this != &src)
+		this->_target = src._target;
+	return (*this);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &form) : AForm(form), _target(form._target){

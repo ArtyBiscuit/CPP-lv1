@@ -1,7 +1,9 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm    &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src){
-    return (*this);
+	if (this != &src)
+		this->_target = src._target;
+	return (*this);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &form) : AForm(form), _target(form._target){

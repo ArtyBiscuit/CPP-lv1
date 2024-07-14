@@ -51,4 +51,34 @@ int main(void){
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
+
+    try{
+        Bureaucrat Test = Bureaucrat("test1", 1);
+        std::cout << Test << std::endl;
+        Test.increaseGrade();
+        std::cout << Test << std::endl;
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+
+    try{
+        Bureaucrat Test = Bureaucrat("test2", 149);
+        std::cout << Test << std::endl;
+        Test.decreaseGrade();
+        std::cout << Test << std::endl;
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+
+    try{
+        Bureaucrat Test = Bureaucrat("test3", 150);
+        std::cout << Test << std::endl;
+        Test.decreaseGrade();
+        std::cout << Test << std::endl;
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
 }

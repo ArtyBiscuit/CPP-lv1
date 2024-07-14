@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat    &Bureaucrat::operator=(const Bureaucrat &src){
-    *this = src;
+Bureaucrat& Bureaucrat::operator=(Bureaucrat const &src) {
+    if (this != &src) {
+        this->_grade = src.getGrade();
+    }
     return (*this);
 }
 
@@ -11,6 +13,10 @@ std::ostream    &operator<<(std::ostream &output, Bureaucrat const &br){
     output << br.getGrade();
     output << ".";
     return (output);
+}
+
+Bureaucrat::Bureaucrat(Bureaucrat const &src): _name(src._name) {
+    *this = src;
 }
 
 Bureaucrat::Bureaucrat(){
@@ -37,13 +43,13 @@ unsigned int Bureaucrat::getGrade() const{
 }
 
 void Bureaucrat::increaseGrade(){
-    if((this->_grade - 1) >= 1)
+    if((this->_grade - 1) < 1)
         throw GradeTooHighException();
     else
         this->_grade -= 1;
 }
 void Bureaucrat::decreaseGrade(){
-    if((this->_grade + 1) <= 150)
+    if((this->_grade + 1) > 150)
         throw GradeTooLowException();
     else
         this->_grade += 1;

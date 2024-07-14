@@ -26,6 +26,7 @@ class Bureaucrat
         };
 
         Bureaucrat &operator=(const Bureaucrat &src);
+        Bureaucrat(Bureaucrat const &src);
         Bureaucrat(const std::string name, unsigned int grade);
         ~Bureaucrat();
 };

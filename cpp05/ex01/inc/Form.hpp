@@ -37,6 +37,7 @@ class Form
         };
 
         Form &operator=(const Form &src);
+        Form(const Form &src);
         Form(std::string name, unsigned int grade_to_sign, unsigned int grade_to_execute);
         ~Form();
 };

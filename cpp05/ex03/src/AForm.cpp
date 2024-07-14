@@ -1,13 +1,10 @@
 #include "AForm.hpp"
 
-// AForm    &AForm::operator=(const AForm &src){
-//     *this = src;
-//     return (*this);
-// }
-
 AForm    &AForm::operator=(const AForm &src){
-    this->_signed = src._signed;
-    return (*this);
+	if (this != &src) {
+		this->_signed = src._signed;
+	}
+	return (*this);
 }
 
 // Print all AForm info.
@@ -29,6 +26,10 @@ AForm::AForm(std::string name, unsigned int grade_to_sign, unsigned int grade_to
         throw GradeTooLowException();
     else if (grade_to_sign < 1 || grade_to_execute < 1)
         throw GradeTooHighException();
+}
+
+AForm::AForm(const AForm &src): _name(src._name), _grade_to_sign(src._grade_to_sign), _grade_to_execute(src._grade_to_sign) {
+	*this = src;
 }
 
 AForm::AForm() : _name("none"), _grade_to_sign(0), _grade_to_execute(0){

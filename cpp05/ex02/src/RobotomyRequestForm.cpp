@@ -1,7 +1,9 @@
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm    &RobotomyRequestForm::operator=(const RobotomyRequestForm &src){
-    return (*this);
+	if (this != &src)
+		this->_target = src._target;
+	return (*this);
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &form) : AForm(form), _target(form._target){

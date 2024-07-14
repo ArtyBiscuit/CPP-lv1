@@ -7,7 +7,12 @@
 
 
 Intern    &Intern::operator=(const Intern &src){
+    (void) src;
     return (*this);
+}
+
+Intern::Intern(const Intern &src) {
+	(void)src;
 }
 
 AForm *makePresidentialPardonForm(std::string name){

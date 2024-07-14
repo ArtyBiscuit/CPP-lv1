@@ -40,6 +40,7 @@ class AForm
         };
 
         AForm &operator=(const AForm &src);
+        AForm(const AForm &src);
         AForm(std::string name, unsigned int grade_to_sign, unsigned int grade_to_execute);
         virtual ~AForm();
 };
