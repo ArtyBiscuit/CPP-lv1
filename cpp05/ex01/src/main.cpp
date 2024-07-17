@@ -145,6 +145,25 @@ void FormTest(){
     catch (std::exception &e){
         std::cout << e.what() << std::endl;
     }
+
+    try{
+        std::string     form_name = "F-39";
+        unsigned int    grade_to_sign = 46;
+        unsigned int    grade_to_execute = 10;
+
+        std::string     bureaucrat_name = "Spooky";
+        unsigned int    bureaucrat_grade = 15;
+
+        Bureaucrat Stev = Bureaucrat(bureaucrat_name, bureaucrat_grade);
+        Form myForm = Form(form_name, grade_to_sign, grade_to_execute);
+
+        std::cout << Stev << std::endl;
+        std::cout << myForm << std::endl;
+        Stev.signForm(myForm);
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
     std::cout << std::endl;
 }
 

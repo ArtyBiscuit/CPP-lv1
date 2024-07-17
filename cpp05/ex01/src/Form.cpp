@@ -53,7 +53,7 @@ unsigned int     Form::getGradeToExecute() const{
 }
 
 void     Form::beSigned(Bureaucrat &Bur){
-    if(Bur.getGrade() < this->_grade_to_sign){
+    if(Bur.getGrade() > this->_grade_to_sign){
         throw GradeTooLowException();
     }
     this->_signed = true;
