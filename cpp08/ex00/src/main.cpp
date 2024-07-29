@@ -13,6 +13,7 @@ int main(void){
         myVec.push_back(42);
 
         std::cout << *easyfind(myVec, 67) << std::endl;
+        std::cout << *easyfind(myVec, 0) << std::endl;
     }
     catch(const std::exception& e)
     {

@@ -43,21 +43,24 @@ void identify(Base* p){
 
 void identify(Base& p){
 	try{
-		dynamic_cast<A&>(p);
+		A& a = dynamic_cast<A&>(p);
+        (void)a;
         std::cout << "is a A class" << std::endl;
 		return;
 	}
     catch(const std::exception &e){
     }
 	try{
-		dynamic_cast<B&>(p);
+		B& b = dynamic_cast<B&>(p);
+        (void)b;
         std::cout << "is a B class" << std::endl;
 		return;
 	}
     catch(const std::exception &e){
     }
 	try{
-		dynamic_cast<C&>(p);
+		C& c = dynamic_cast<C&>(p);
+        (void)c;
         std::cout << "is a c class" << std::endl;
 		return;
 	}

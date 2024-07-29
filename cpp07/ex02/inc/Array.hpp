@@ -32,6 +32,17 @@ class Array
             return (*this);
         };
 
+        //Array &operator=(const Array &toCopy) {
+        //     if (this == &toCopy)
+        //         return (*this);
+        //     delete [] _array;
+        //     this->_array = new T[toCopy.size()];
+        //     this->_size = toCopy.size();
+        //     for (unsigned int i = 0; i < toCopy.size(); i++)
+        //         this->_array[i] = toCopy._array[i];
+        //     return (*this);
+        // };
+
         T	operator[](unsigned int index) const {
             if (index >= this->_size) {
                 throw OutOfRange();
@@ -54,7 +65,11 @@ class Array
         };
 
         Array(const Array &src){
-            *this = src;
+            this->_array = new T[src._size] ();
+            this->_size = src._size;
+            for (unsigned int i = 0; i < src._size; i++){
+                this->_array[i] = src._array[i]; 
+            }
         };
 
         ~Array(){

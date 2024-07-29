@@ -9,7 +9,7 @@ Data*	Serializer::deserialize(uintptr_t raw) {
 }
 
 Serializer    &Serializer::operator=(const Serializer &src){
-    *this = src;
+    (void)src;
     return (*this);
 }
 

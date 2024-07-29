@@ -15,6 +15,8 @@ class Span
         unsigned int _N;
         std::vector<int> _VSpan;
     public:
+        unsigned int getN();
+        std::vector<int> getSpan();
         void addNumber(int Number);
         unsigned int shortestSpan();
         unsigned int longestSpan();
@@ -22,6 +24,7 @@ class Span
         Span();
         Span(unsigned int N);
         ~Span();
+        Span(Span const &src);
         class SpanFull : public std::exception{ 
         public: 
             virtual const char* what() const throw(){
@@ -34,6 +37,7 @@ class Span
                 return ("Insuficiente numbers in your Span.");
             }; 
         };
+        Span &operator=(const Span &src);
 };
 
 #endif

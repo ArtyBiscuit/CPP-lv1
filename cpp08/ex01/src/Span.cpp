@@ -41,6 +41,26 @@ void Span::randomGenerate(){
 
 }
 
+unsigned int Span::getN(){
+    return (this->_N);
+}
+
+std::vector<int> Span::getSpan(){
+    return (this->_VSpan);
+}
+
+Span& Span::operator=(Span const &src) {
+    if (this != &src) {
+        this->_N = getN();
+        this->_VSpan = getSpan();
+    }
+    return (*this);
+}
+
+Span::Span(Span const &src){
+    *this = src;
+}
+
 Span::Span(unsigned int N){
     this->_N = N;
 }

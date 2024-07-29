@@ -67,27 +67,6 @@ int CheckType(std::string str){
     return (-1);
 }
 
-// void DisplayExeption(std::string str){
-//     if(str == "+inff" || str == "+inf"){
-//         std::cout << "char: impossible" << std::endl;
-//         std::cout << "int: impossible" << std::endl;
-//         std::cout << "float: " << "inff" << std::endl;
-//         std::cout << "dooble: " << "inf" << std::endl;
-//     }
-//     if(str == "-inff" || str == "-inf"){
-//         std::cout << "char: impossible" << std::endl;
-//         std::cout << "int: impossible" << std::endl;
-//         std::cout << "float: " << "-inff" << std::endl;
-//         std::cout << "dooble: " << "-inf" << std::endl;
-//     }
-//     if(str == "nan"){
-//         // a finir.
-//     }
-//     else{
-//         std::cout << "Unsupported argument." << std::endl;
-//     }
-// }
-
 void DisplayExeption(std::string str)
 {
 	if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf")
@@ -145,7 +124,7 @@ void ScalarConverter::convert(std::string str){
 }
 
 ScalarConverter    &ScalarConverter::operator=(const ScalarConverter &src){
-    *this = src;
+    (void)src;
     return (*this);
 }
 
