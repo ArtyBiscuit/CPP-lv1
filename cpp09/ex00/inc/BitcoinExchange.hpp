@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <exception>
+#include <list>
 
 class BadLine : public std::exception{ 
 	public: 
@@ -36,6 +37,20 @@ class BadInput : public std::exception{
 	public: 
 		virtual const char* what() const throw(){
             return ("ERROR: Bad user input.");
+        }; 
+};
+
+class invalidDate : public std::exception{ 
+	public: 
+		virtual const char* what() const throw(){
+            return ("ERROR: invalid date.");
+        }; 
+};
+
+class badWallet : public std::exception{ 
+	public: 
+		virtual const char* what() const throw(){
+            return ("ERROR: Wallet not acceptable value.");
         }; 
 };
 #endif
