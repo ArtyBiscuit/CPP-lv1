@@ -6,7 +6,8 @@ _CYAN=\033[36m
 
 NAME = btc
 
-SRC =	main.cpp
+SRC =	main.cpp \
+		BitcoinExchange.cpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 

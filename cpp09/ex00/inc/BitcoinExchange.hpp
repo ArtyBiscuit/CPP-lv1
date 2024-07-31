@@ -12,6 +12,8 @@
 #include <exception>
 #include <list>
 
+void bitcoinExchange(int argv, char **argc);
+
 class BadLine : public std::exception{ 
 	public: 
 		virtual const char* what() const throw(){
@@ -53,4 +55,5 @@ class badWallet : public std::exception{
             return ("ERROR: Wallet not acceptable value.");
         }; 
 };
+
 #endif
